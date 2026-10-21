@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Manager</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main class="container">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">JAVA CRUD APPLICATION</p>
+            <h1>Student Manager</h1>
+            <p class="subtitle">Create, view, update, and delete student records.</p>
+        </div>
+        <a class="button button-primary" th:href="@{/students/new}">+ Add Student</a>
+    </header>
+
+    <section class="panel">
+        <div class="panel-heading">
+            <h2>All Students</h2>
+            <span class="count" th:text="${students.size()} + ' students'">0 students</span>
+        </div>
+
+        <div th:if="${students.isEmpty()}" class="empty-state">
+            <h3>No students yet</h3>
+            <p>Add your first student to get started.</p>
+            <a class="button button-primary" th:href="@{/students/new}">Add Student</a>
+        </div>
+
+        <div class="table-wrap" th:unless="${students.isEmpty()}">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td class="muted" th:text="${student.id}">1</td>
+                    <td class="student-name" th:text="${student.name}">Alex Johnson</td>
+                    <td th:text="${student.email}">alex@example.com</td>
+                    <td><span class="course-tag" th:text="${student.course != null and !student.course.isBlank() ? student.course : 'Not specified'}">Computer Science</span></td>
+                    <td>
+                        <div class="actions">
+                            <a class="action-link" th:href="@{/students/{id}(id=${student.id})}">View</a>
+                            <a class="action-link" th:href="@{/students/{id}/edit(id=${student.id})}">Edit</a>
+                            <form th:action="@{/students/{id}/delete(id=${student.id})}" method="post"
+                                  onsubmit="return confirm('Are you sure you want to delete this student?');">
+                                <button class="action-link danger-link" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer>Built with Java, Spring Boot, Thymeleaf, and Maven.</footer>
+</main>
+</body>
+</html>

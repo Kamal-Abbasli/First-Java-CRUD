@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details | Student Manager</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main class="container narrow-container">
+    <a class="back-link" th:href="@{/students}">← Back to students</a>
+    <section class="panel details-panel">
+        <p class="eyebrow">STUDENT DETAILS</p>
+        <div class="details-title-row">
+            <div>
+                <h1 th:text="${student.name}">Alex Johnson</h1>
+                <p class="subtitle">Student ID: <span th:text="${student.id}">1</span></p>
+            </div>
+            <span class="avatar" th:text="${#strings.substring(student.name, 0, 1).toUpperCase()}">A</span>
+        </div>
+
+        <dl class="details-list">
+            <div>
+                <dt>Email Address</dt>
+                <dd th:text="${student.email}">alex@example.com</dd>
+            </div>
+            <div>
+                <dt>Course</dt>
+                <dd th:text="${student.course != null and !student.course.isBlank() ? student.course : 'Not specified'}">Computer Science</dd>
+            </div>
+        </dl>
+
+        <div class="form-actions">
+            <a class="button button-secondary" th:href="@{/students}">Back to List</a>
+            <a class="button button-primary" th:href="@{/students/{id}/edit(id=${student.id})}">Edit Student</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
