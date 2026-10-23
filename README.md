@@ -78,15 +78,13 @@ java-crud-student/
 
 ## Publish to GitHub
 
-Create a **public** repository in your course-specific GitHub account. Include your Student ID in your GitHub username as requested by your lecturer. Then, from this project folder, run:
 
 ```bash
 git init
 git add .
 git commit -m "Create Java CRUD application"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+git remote add origin https://github.com/73740 Kamal-Abbasli/First-Java-.git
 git push -u origin main
 ```
 
-Replace `YOUR_USERNAME` and `YOUR_REPOSITORY` with your actual GitHub details.
