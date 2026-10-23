@@ -78,6 +78,9 @@ java-crud-student/
 
 ## Publish to GitHub
 
+### Partner Review
+Reviewed and contributed by Kamal Abbasli (Student ID: 73740).
+
 ```bash
 git init
 git add .
